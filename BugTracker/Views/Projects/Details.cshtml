@@ -1,26 +1,43 @@
 ﻿@model BugTracker.Models.Classes.Project
 
-@{
-    ViewBag.Title = "Details";
-}
+<div class="content-main">
 
-<h2>Details</h2>
+    <!--banner-->
+    <div class="banner">
+        <h2>
+            <a href="index.html">Home</a>
+            <i class="fa fa-angle-right"></i>
+            <span>Projects</span>
+        </h2>
+    </div>
+    <!--//banner-->
+    <!--faq-->
+    <div class="blank">
 
-<div>
-    <h4>Project</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+        <div class="blank-page">
+            <h2>Details Of Project</h2>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Name)
+                </dt>
 
-    </dl>
+                <dd>
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
+                <p>
+                    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+                    @Html.ActionLink("Back to List", "Index")
+                </p>
+            </dl>
+        </div>
+    </div>
+
+    <!--//faq-->
+    <!---->
+
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+
+
