@@ -195,6 +195,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ApplicationUsersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProjectsController.cs" />
@@ -206,6 +207,7 @@
     <Compile Include="Models\Classes\Project.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\UserRoleViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -311,6 +313,8 @@
     <Content Include="Scripts\site.js" />
     <Content Include="Scripts\skycons.js" />
     <Content Include="Scripts\underscore-min.js" />
+    <Content Include="Views\ApplicationUsers\ChangeRole.cshtml" />
+    <Content Include="Views\ApplicationUsers\index.cshtml" />
     <None Include="Views\Home\404.cshtml" />
     <None Include="Views\Home\blank.cshtml" />
     <Content Include="Views\Home\calendar.html" />

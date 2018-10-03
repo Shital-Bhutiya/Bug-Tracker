@@ -24,14 +24,26 @@ namespace BugTracker.Migrations
             {
                 roleManager.Create(new IdentityRole { Name = "Admin" });
             }
-            
+            if (!context.Roles.Any(r => r.Name == "Project Manager"))
+            {
+                roleManager.Create(new IdentityRole { Name = "Project Manager" });
+            }
+            if (!context.Roles.Any(r => r.Name == "Developer"))
+            {
+                roleManager.Create(new IdentityRole { Name = "Developer" });
+            }
+            if (!context.Roles.Any(r => r.Name == "Submitter"))
+            {
+                roleManager.Create(new IdentityRole { Name = "Submitter" });
+            }
+
             ApplicationUser adminUser = null;
             if (!context.Users.Any(p => p.UserName == "admin@mybugtracker.com"))
             {
                 adminUser = new ApplicationUser();
                 adminUser.UserName = "admin@mybugtracker.com";
                 adminUser.Email = "admin@mybugtracker.com";
-                adminUser.FirstName = "Admin";
+                adminUser.Name = "Admin";
                 adminUser.LastName = "User";
                 adminUser.DisplayName = "Admin User";
                 userManager.Create(adminUser, "Password-1");

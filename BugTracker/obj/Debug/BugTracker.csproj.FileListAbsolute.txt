@@ -353,7 +353,6 @@ C:\C#Projects\Bug-Tracker\BugTracker\bin\Microsoft.AI.DependencyCollector.xml
 C:\C#Projects\Bug-Tracker\BugTracker\bin\Microsoft.AI.WindowsServer.xml
 C:\C#Projects\Bug-Tracker\BugTracker\bin\Microsoft.AI.Web.xml
 C:\C#Projects\Bug-Tracker\BugTracker\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\C#Projects\Bug-Tracker\BugTracker\obj\Debug\BugTracker.csprojAssemblyReference.cache
 C:\C#Projects\Bug-Tracker\BugTracker\obj\Debug\BugTracker.csproj.CoreCompileInputs.cache
 C:\C#Projects\Bug-Tracker\BugTracker\obj\Debug\BugTracker.csproj.CopyComplete
 C:\C#Projects\Bug-Tracker\BugTracker\obj\Debug\BugTracker.dll

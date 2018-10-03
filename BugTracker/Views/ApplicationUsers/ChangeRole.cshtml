@@ -1,0 +1,32 @@
+﻿@model BugTracker.Models.UserRoleViewModel
+@{
+    ViewBag.Title = "ChangeRole";
+}
+<div class="banner">
+    <h2>
+        <a href="index.html">Home</a>
+        <i class="fa fa-angle-right"></i>
+        <span>Blank</span>
+    </h2>
+</div>
+<!--//banner-->
+<!--faq-->
+<div class="blank">
+
+
+    <div class="blank-page">
+        <section class="content">
+            <p>
+                User: @Model.Name
+            </p>
+            @using (Html.BeginForm())
+            {
+                @Html.HiddenFor(p => p.Id)
+
+                @Html.ListBoxFor(p => p.SelectedRoles, Model.Roles)
+
+                <input type="submit" value="Submit!" />
+            }
+        </section>
+    </div>
+</div>
