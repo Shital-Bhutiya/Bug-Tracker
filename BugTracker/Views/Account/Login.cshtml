@@ -31,7 +31,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </head>
 <body>
     <div class="login">
-        <h1><a href="index.html">Minimal </a></h1>
+        <h1><a href=@Url.Action("index","home")>Bug Tracker </a></h1>
         <div class="login-bottom">
             <h2>Login</h2>
             @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
@@ -52,15 +52,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </div>
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
-                            <div class="checkbox">
+                         
                                 @Html.CheckBoxFor(m => m.RememberMe)
                                 @Html.LabelFor(m => m.RememberMe)
+
                             </div>
                         </div>
                     </div>
-
-
-                </div>
+                    
                 <div class="col-md-6 login-do">
                     <label class="hvr-shutter-in-horizontal login-sub">
                         <input type="submit" value="login">
@@ -83,7 +82,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </div>
     <!---->
     <div class="copy-right">
-        <p> &copy; 2016 Minimal. All Rights Reserved | Design by <a href="http://w3layouts.com/" target="_blank">W3layouts</a> </p>
+        <p> &copy; 2018 Bug Tracker. All Rights Reserved | Design by Shital Bhutiya</p>
     </div>
     <!---->
     <!--scrolling js-->
