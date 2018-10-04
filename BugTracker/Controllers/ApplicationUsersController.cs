@@ -1,9 +1,8 @@
 ﻿using BugTracker.Models;
+using BugTracker.Models.Helpers;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -22,13 +21,12 @@ namespace BugTracker.Controllers
         public ActionResult ChangeRole(string id)
         {
             var model = new UserRoleViewModel();
-            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
-            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db));
-            var user = userManager.FindById(id);
+            var userRoleHelper = new UserRoleHelper();
+
             model.Id = id;
-            model.Name = user.Name;
-            var roles = roleManager.Roles.ToList();
-            var userRoles = userManager.GetRoles(id);
+            model.Name = User.Identity.Name;
+            var roles = userRoleHelper.GetAllRoles();
+            var userRoles = userRoleHelper.GetUserRoles(id);
             model.Roles = new MultiSelectList(roles, "Name", "Name", userRoles);
             return View(model);
         }
