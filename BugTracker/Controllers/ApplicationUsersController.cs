@@ -24,7 +24,7 @@ namespace BugTracker.Controllers
             var userRoleHelper = new UserRoleHelper();
 
             model.Id = id;
-            model.Name = User.Identity.Name;
+            model.Name = db.Users.FirstOrDefault(p => p.Id == id).Name;
             var roles = userRoleHelper.GetAllRoles();
             var userRoles = userRoleHelper.GetUserRoles(id);
             model.Roles = new MultiSelectList(roles, "Name", "Name", userRoles);
@@ -48,8 +48,7 @@ namespace BugTracker.Controllers
             {
                 userManager.AddToRole(user.Id, role);
             }
-            var signInManager = HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
-            signInManager.SignIn(user, isPersistent: false, rememberBrowser: false);
+            
             return RedirectToAction("Index");
         }
         protected override void Dispose(bool disposing)
