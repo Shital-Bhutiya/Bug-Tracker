@@ -208,6 +208,7 @@
     <Compile Include="Models\Helpers\UserRoleManagerHelper.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\PersonalEmailService.cs" />
     <Compile Include="Models\ProjectAssignViewModel.cs" />
     <Compile Include="Models\UserRoleViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -281,6 +282,7 @@
     <Content Include="fonts\FontAwesome.otf" />
     <Content Include="fonts\Montserrat-Regular.ttf" />
     <Content Include="fonts\Muli-Regular.ttf" />
+    <Content Include="private.config" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\Chart.js" />
     <Content Include="Scripts\clndr.js" />
