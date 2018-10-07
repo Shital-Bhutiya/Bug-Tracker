@@ -205,6 +205,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Classes\Project.cs" />
+    <Compile Include="Models\Helpers\IdentityExtensions.cs" />
     <Compile Include="Models\Helpers\UserRoleManagerHelper.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -375,6 +376,7 @@
     <Content Include="Views\Projects\Edit.cshtml" />
     <Content Include="Views\Projects\Index.cshtml" />
     <Content Include="Views\Projects\AssignUsers.cshtml" />
+    <Content Include="Views\Manage\ChangeProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

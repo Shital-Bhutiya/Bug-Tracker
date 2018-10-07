@@ -15,6 +15,7 @@ namespace BugTracker.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         public ManageController()
         {
@@ -71,6 +72,7 @@ namespace BugTracker.Controllers
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
                 Logins = await UserManager.GetLoginsAsync(userId),
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
+                
             };
             return View(model);
         }
@@ -243,7 +245,32 @@ namespace BugTracker.Controllers
             AddErrors(result);
             return View(model);
         }
-
+        public ActionResult ChangeProfile()
+        {
+            var userId = User.Identity.GetUserId();
+            var user = db.Users.FirstOrDefault(p => p.Id == userId);
+            var model = new ChangeProfileViewModel();
+            model.Name = user.Name;
+            model.LastName = user.LastName;
+            model.DisplayName = user.DisplayName;
+            return View(model);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ChangeProfile(ChangeProfileViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var userId = User.Identity.GetUserId();
+                var dbUser = db.Users.FirstOrDefault(p => p.Id == userId);
+                dbUser.Name = model.Name;
+                dbUser.LastName = model.LastName;
+                dbUser.DisplayName = model.DisplayName;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(model);
+        }
         //
         // GET: /Manage/SetPassword
         public ActionResult SetPassword()

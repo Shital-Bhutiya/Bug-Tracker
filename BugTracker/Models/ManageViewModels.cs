@@ -65,7 +65,13 @@ namespace BugTracker.Models
         [Display(Name = "Phone Number")]
         public string Number { get; set; }
     }
-
+    public class ChangeProfileViewModel
+    {
+        public string Name { get; set; }
+        public string LastName { get; set; }
+        public string DisplayName { get; set; }
+        public int Id { get; set; }
+    }
     public class VerifyPhoneNumberViewModel
     {
         [Required]

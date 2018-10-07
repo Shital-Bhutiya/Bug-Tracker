@@ -1,0 +1,47 @@
+﻿@model BugTracker.Models.ChangeProfileViewModel
+@{ ViewBag.Title = "ChangeProfile";}
+
+<div class="content-main">
+
+    <!--banner-->
+    <div class="banner">
+        <h2>
+            <a href="index.html">Home</a>
+            <i class="fa fa-angle-right"></i>
+            <span>Profile</span>
+        </h2>
+    </div>
+    @using (Html.BeginForm("ChangeProfile", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <hr />
+        @Html.ValidationSummary("", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(m => m.Name, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.EditorFor(m => m.Name, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.DisplayName, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.EditorFor(m => m.DisplayName, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.LastName, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.EditorFor(m => m.LastName, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Change Profile" class="btn btn-warning" />
+            </div>
+        </div>
+    }
+    </div>
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
