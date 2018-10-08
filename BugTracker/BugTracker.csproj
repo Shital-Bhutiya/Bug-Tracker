@@ -321,21 +321,6 @@
     <Content Include="Views\ApplicationUsers\ChangeRole.cshtml" />
     <Content Include="Views\ApplicationUsers\index.cshtml" />
     <None Include="Views\Home\404.cshtml" />
-    <None Include="Views\Home\blank.cshtml" />
-    <Content Include="Views\Home\calendar.html" />
-    <None Include="Views\Home\faq.cshtml" />
-    <None Include="Views\Home\forms.cshtml" />
-    <None Include="Views\Home\gallery.cshtml" />
-    <None Include="Views\Home\graphs.cshtml" />
-    <None Include="Views\Home\inbox.cshtml" />
-    <Content Include="Views\Home\index.html" />
-    <None Include="Views\Home\layout.cshtml" />
-    <None Include="Views\Home\maps.cshtml" />
-    <None Include="Views\Home\profile.cshtml" />
-    <None Include="Views\Home\signin.cshtml" />
-    <None Include="Views\Home\signup.cshtml" />
-    <None Include="Views\Home\typography.cshtml" />
-    <None Include="Views\Home\validation.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -347,8 +332,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />

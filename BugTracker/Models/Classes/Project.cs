@@ -13,6 +13,6 @@ namespace BugTracker.Models.Classes
         }
         public int Id { get; set; }
         public string Name { get; set; }
-        public ICollection<ApplicationUser> Users { get; set; }
+        public virtual ICollection<ApplicationUser> Users { get; set; }
     }
 }
