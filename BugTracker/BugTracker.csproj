@@ -320,7 +320,6 @@
     <Content Include="Scripts\underscore-min.js" />
     <Content Include="Views\ApplicationUsers\ChangeRole.cshtml" />
     <Content Include="Views\ApplicationUsers\index.cshtml" />
-    <None Include="Views\Home\404.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

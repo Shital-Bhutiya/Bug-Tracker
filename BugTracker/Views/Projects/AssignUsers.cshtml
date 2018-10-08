@@ -19,19 +19,18 @@
 
         <div class="blank-page">
             <h2>Assign users to Project</h2>
-            <hr/>
+            <hr />
             <section class="content">
                 @using (Html.BeginForm())
                 {
                     @Html.HiddenFor(p => p.Id)
                     @Html.ListBoxFor(p => p.SelectedUsers, Model.UserList)
-                    <input type="submit" value="Submit!" class="btn btn-success"/>
+                    <input type="submit" value="Submit!" class="btn btn-success" />
                 }
             </section>
 
         </div>
-        </div>
     </div>
-            
-               
-            
+</div>
+
+
