@@ -14,8 +14,6 @@ namespace BugTracker.Models.Classes
         {
             Created = DateTime.Now;
         }
-        //public MultiSelectList ProjectList { get; set; }
-        //public MultiSelectList Type { get; set; }
-        //public MultiSelectList Priority { get; set; }
+    
     }
 }

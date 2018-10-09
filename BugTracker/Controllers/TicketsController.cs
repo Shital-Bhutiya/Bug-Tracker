@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using BugTracker.Models;
 using BugTracker.Models.Classes;
+using PagedList;
+using PagedList.Mvc;
 
 namespace BugTracker.Controllers
 {
@@ -17,9 +19,11 @@ namespace BugTracker.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Tickets
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            return View(db.Tickets.ToList());
+            int pageSize = 4; // display three blog posts at a time on this page
+            int pageNumber = (page ?? 1);
+            return View(db.Tickets.OrderBy(p => p.Id).ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Tickets/Details/5
@@ -81,11 +85,14 @@ namespace BugTracker.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,Description,Created,Updated")] Ticket ticket)
+        public ActionResult Edit([Bind(Include = "Id,Title,Description")] Ticket ticket)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(ticket).State = EntityState.Modified;
+                var DBTicket = db.Tickets.FirstOrDefault(p=>p.Id == ticket.Id);
+                DBTicket.Title = ticket.Title;
+                DBTicket.Description = ticket.Description;
+                DBTicket.Updated = DateTime.Now;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
