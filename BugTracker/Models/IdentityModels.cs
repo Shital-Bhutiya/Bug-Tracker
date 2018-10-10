@@ -52,5 +52,8 @@ namespace BugTracker.Models
         public DbSet<Status> Statues { get; set; }
 
         public DbSet<Priority> Prorities { get; set; }
+
+        public DbSet<Comment> Comments { get; set; }
+        public DbSet<Attechments> Attechments { get; set; }
     }
 }

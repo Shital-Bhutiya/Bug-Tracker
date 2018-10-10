@@ -11,6 +11,19 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+
+<div class="col-lg-4">
+    <form action="@Url.Action("Index", "Tickets")" method="post">
+
+        <div class="input-group">
+            <input type="search" name="searchString" placeholder="Search here" value="@ViewBag.searchString" class="form-control">
+            <span class="input-group-btn">
+                <button class="btn btn-default search" type="submit">Go!</button>
+            </span>
+        </div>
+    </form>
+
+</div>
 <table class="table">
     <tr>
         <th>

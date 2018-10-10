@@ -211,11 +211,13 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Classes\Attechments.cs" />
     <Compile Include="Models\Classes\Priority.cs" />
     <Compile Include="Models\Classes\Project.cs" />
     <Compile Include="Models\Classes\Status.cs" />
     <Compile Include="Models\Classes\Ticket.cs" />
     <Compile Include="Models\Classes\Type.cs" />
+    <Compile Include="Models\Classes\Comment.cs" />
     <Compile Include="Models\Helpers\IdentityExtensions.cs" />
     <Compile Include="Models\Helpers\UserRoleManagerHelper.cs" />
     <Compile Include="Models\IdentityModels.cs" />

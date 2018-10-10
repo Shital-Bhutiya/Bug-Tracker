@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using BugTracker.Models;
 using BugTracker.Models.Classes;
 using PagedList;
-using PagedList.Mvc;
 
 namespace BugTracker.Controllers
 {
@@ -19,11 +15,19 @@ namespace BugTracker.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Tickets
-        public ActionResult Index(int? page)
+        public ActionResult Index(int? page,string searchString)
         {
             int pageSize = 4; // display three blog posts at a time on this page
             int pageNumber = (page ?? 1);
-            return View(db.Tickets.OrderBy(p => p.Id).ToPagedList(pageNumber, pageSize));
+            var ticketQuery = db.Tickets.OrderBy(p => p.Id).AsQueryable();
+            if (!string.IsNullOrWhiteSpace(searchString))
+            {
+                ticketQuery = ticketQuery.Where(p => p.Title.Contains(searchString) ||
+                                p.Description.Contains(searchString)).AsQueryable();
+            }
+            
+            ViewBag.searchString = searchString;
+            return View(ticketQuery.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Tickets/Details/5
