@@ -19,6 +19,7 @@ namespace BugTracker.Models
         public ApplicationUser()
         {
             Project = new HashSet<Project>();
+            
         }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
@@ -45,5 +46,11 @@ namespace BugTracker.Models
         public DbSet<Project> Projects { get; set; }
 
         public DbSet<Ticket> Tickets { get; set; }
+
+        public DbSet<Type> Types { get; set; }
+
+        public DbSet<Status> Statues { get; set; }
+
+        public DbSet<Priority> Prorities { get; set; }
     }
 }

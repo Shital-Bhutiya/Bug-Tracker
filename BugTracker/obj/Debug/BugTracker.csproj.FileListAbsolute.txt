@@ -357,8 +357,8 @@ C:\C#Projects\Bug-Tracker\BugTracker\obj\Debug\BugTracker.csproj.CoreCompileInpu
 C:\C#Projects\Bug-Tracker\BugTracker\obj\Debug\BugTracker.csproj.CopyComplete
 C:\C#Projects\Bug-Tracker\BugTracker\obj\Debug\BugTracker.dll
 C:\C#Projects\Bug-Tracker\BugTracker\obj\Debug\BugTracker.pdb
-C:\C#Projects\Bug-Tracker\BugTracker\obj\Debug\BugTracker.csprojAssemblyReference.cache
 C:\C#Projects\Bug-Tracker\BugTracker\bin\PagedList.dll
 C:\C#Projects\Bug-Tracker\BugTracker\bin\PagedList.Mvc.dll
 C:\C#Projects\Bug-Tracker\BugTracker\bin\PagedList.xml
 C:\C#Projects\Bug-Tracker\BugTracker\bin\PagedList.Mvc.xml
+C:\C#Projects\Bug-Tracker\BugTracker\obj\Debug\BugTracker.csprojAssemblyReference.cache
