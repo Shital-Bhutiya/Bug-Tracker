@@ -11,7 +11,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 
     <link href="~/Content/bootstrap.min.css" rel='stylesheet' type='text/css' />
-
+    <link href="http://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet" />
     <!-- Custom Theme files -->
     <link href="~/Content/style.css" rel="stylesheet" />
     <link href="~/Content/font-awesome.css" rel="stylesheet" />
@@ -159,7 +159,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <li>
                                 <a href="#" class=" hvr-bounce-to-right"><i class="fa fa-desktop nav_icon"></i> <span class="nav-label">Tickets</span><span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
-                                    <li><a href="@Url.Action("Index", "Tickets")" class=" hvr-bounce-to-right"> <i class="fa fa-info-circle nav_icon"></i>All Tickets</a></li>
+                                    <li><a href="@Url.Action("Index", "Tickets", new { id="" })" class=" hvr-bounce-to-right"> <i class="fa fa-info-circle nav_icon"></i>All Tickets</a></li>
+                                    <li><a href="@Url.Action("Index", "Tickets",new { id="User"})" class=" hvr-bounce-to-right"> <i class="fa fa-info-circle nav_icon"></i>Your Tickets</a></li>
+
                                 </ul>
                             </li>
                         }
@@ -182,5 +184,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <script src="~/Scripts/scripts.js"></script>
         <!--//scrolling js-->
         <script src="~/Scripts/bootstrap.min.js"></script>
+        <script type="text/javascript" src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 </body>
 </html>

@@ -18,21 +18,14 @@ namespace BugTracker.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Tickets
-      
-        public ActionResult Index(int? page, string searchString)
-        {
-            int pageSize = 4; // display three blog posts at a time on this page
-            int pageNumber = (page ?? 1);
-            var ticketQuery = db.Tickets.Include(t => t.TicketPriority).Include(t => t.TicketProject).Include(t => t.TicketStatus).Include(t => t.TicketType).AsQueryable();
-            if (!string.IsNullOrWhiteSpace(searchString))
-            {
-                ticketQuery = ticketQuery.Where(p => p.Title.Contains(searchString) ||
-                                p.Description.Contains(searchString)).AsQueryable();
-            }
 
-            ViewBag.searchString = searchString;
-            var query = ticketQuery.OrderBy(p => p.Id).ToPagedList(pageNumber, pageSize);
-            return View(query);
+        public ActionResult Index(string id)
+        {
+            if(!string.IsNullOrWhiteSpace(id))
+            {
+                return View(db.Tickets.Include(t => t.TicketPriority).Include(t => t.TicketProject).Include(t => t.TicketStatus).Include(t => t.TicketType).Where(p=>p.CreatorId==User.Identity.GetUserId()).ToList());
+            }
+            return View(db.Tickets.Include(t => t.TicketPriority).Include(t => t.TicketProject).Include(t => t.TicketStatus).Include(t => t.TicketType).ToList());
         }
 
         // GET: Tickets/Details/5
@@ -105,17 +98,17 @@ namespace BugTracker.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,Description,Created,Updated,CreatorId,AssignId,TicketTypeId,TicketProjectId,TicketPriorityId,TicketStatusId")] Ticket ticket)
+        public ActionResult Edit([Bind(Include = "Id,Title,Description")] Ticket ticket)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(ticket).State = EntityState.Modified;
+                var dbTicket = db.Tickets.FirstOrDefault(p => p.Id == ticket.Id);
+                dbTicket.Title = ticket.Title;
+                dbTicket.Description = ticket.Description;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.TicketPriorityId = new SelectList(db.Prorities, "Id", "Name", ticket.TicketPriorityId);
-            ViewBag.TicketStatusId = new SelectList(db.Statues, "Id", "Name", ticket.TicketStatusId);
-            ViewBag.TicketTypeId = new SelectList(db.Types, "Id", "Name", ticket.TicketTypeId);
+            
             return View(ticket);
         }
 
