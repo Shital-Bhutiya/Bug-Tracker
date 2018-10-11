@@ -57,19 +57,19 @@ namespace BugTracker.Migrations
             }
             context.Types.AddOrUpdate(x => x.Id,
                new Models.Classes.Type(){Id = 1,Name = "Bug Fixes"},
-               new Models.Classes.Type(){Id = 1,Name = "Software Update"},
+               new Models.Classes.Type(){Id = 2,Name = "Software Update"},
                new Models.Classes.Type(){Id = 3,Name = "Adding Helpers"},
                new Models.Classes.Type(){Id = 4,Name = "Database Error"}
             );
             context.Prorities.AddOrUpdate(x => x.Id,
               new Models.Classes.Priority() { Id = 1, Name = "High" },
-              new Models.Classes.Priority() { Id = 1, Name = "Low" },
+              new Models.Classes.Priority() { Id = 2, Name = "Low" },
               new Models.Classes.Priority() { Id = 3, Name = "Medium" },
               new Models.Classes.Priority() { Id = 4, Name = "Urgent" }
            );
             context.Statues.AddOrUpdate(x => x.Id,
               new Models.Classes.Status() { Id = 1, Name = "Not Started" },
-              new Models.Classes.Status() { Id = 1, Name = "Finished" },
+              new Models.Classes.Status() { Id = 2, Name = "Finished" },
               new Models.Classes.Status() { Id = 3, Name = "On Hold" },
               new Models.Classes.Status() { Id = 4, Name = "In Progress" }
            );

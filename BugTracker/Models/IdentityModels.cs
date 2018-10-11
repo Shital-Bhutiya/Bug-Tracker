@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -12,6 +13,10 @@ namespace BugTracker.Models
     public class ApplicationUser : IdentityUser
     {
         public ICollection<Project> Project { get; set; }
+        [InverseProperty("Creator")]
+        public ICollection<Ticket> CreatorTickets { get; set; }
+        [InverseProperty("Assign")]
+        public ICollection<Ticket> AssigneeTickets { get; set; }
 
         public string Name { get;  set; }
         public string LastName { get; set; }

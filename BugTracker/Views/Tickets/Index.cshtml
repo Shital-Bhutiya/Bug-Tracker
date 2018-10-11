@@ -5,13 +5,7 @@
     ViewBag.Title = "Index";
     var pagedList = (IPagedList)Model;
 }
-
 <h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-
 <div class="col-lg-4">
     <form action="@Url.Action("Index", "Tickets")" method="post">
 
@@ -24,8 +18,21 @@
     </form>
 
 </div>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
 <table class="table">
     <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TicketPriority)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TicketStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TicketType)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.Title)
         </th>
@@ -35,13 +42,33 @@
         <th>
             @Html.DisplayNameFor(model => model.Created)
         </th>
-
+        <th>
+            @Html.DisplayNameFor(model => model.Updated)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatorId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AssignId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TicketProject.Name)
+        </th>
         <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TicketPriority)       
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TicketStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TicketType)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
@@ -51,7 +78,18 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Created)
             </td>
-
+            <td>
+                @Html.DisplayFor(modelItem => item.Updated)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatorId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AssignId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem =>item.TicketProject.Name)
+            </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
                 @Html.ActionLink("Details", "Details", new { id = item.Id }) |
