@@ -6,19 +6,31 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using BugTracker.Models;
 using BugTracker.Models.Classes;
+using BugTracker.Models.Helpers;
+using Microsoft.AspNet.Identity;
 
 namespace BugTracker.Controllers
 {
-    [Authorize (Roles ="Admin,Project Manager")]
+    //[Authorize(Roles = "Admin,Project Manager")]
     public class ProjectsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Projects
-        public ActionResult Index()
+        [Authorize(Roles = "Admin,Project Manager,Developer")]
+        public ActionResult Index(string Manager)
+
         {
+            if (!string.IsNullOrWhiteSpace(Manager))
+            {
+                var id = User.Identity.GetUserId();
+                var dbUSer = db.Users.FirstOrDefault(p => p.Id == id);
+                var projects = dbUSer.Project.ToList();
+                return View(projects);
+            }
             return View(db.Projects.ToList());
         }
 

@@ -1,0 +1,37 @@
+﻿@model BugTracker.Models.TicketAssignViewModel
+@{
+    ViewBag.Title = "AssignUsers";
+}
+<div class="content-main">
+
+    <!--banner-->
+    <div class="banner">
+        <h2>
+            <a href="index.html">Home</a>
+            <i class="fa fa-angle-right"></i>
+            <span>Projects</span>
+        </h2>
+    </div>
+    <!--//banner-->
+    <!--faq-->
+    <div class="blank">
+
+
+        <div class="blank-page">
+            <h2>Assign users to Project</h2>
+            <hr />
+            <section class="content">
+                @using (Html.BeginForm())
+                {<div class="form-group">
+                        @Html.HiddenFor(p => p.Id)
+                        @Html.DropDownListFor(p=> p.SelectedUser, Model.UserList, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.UserList, "", new { @class = "text-danger" })
+                        <input type="submit" value="Submit!" class="btn btn-success" />
+                    </div>
+                }
+            </section>
+            </div>
+        </div>
+    </div>
+
+

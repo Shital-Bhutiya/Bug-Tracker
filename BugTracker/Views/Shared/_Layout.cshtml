@@ -103,7 +103,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="full-left">
                     <section class="full-top">
                         <button id="toggle"><i class="fa fa-arrows-alt"></i></button>
-
                     </section>
 
                     <div class="nav  navbar-left-right">
@@ -114,11 +113,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
             </div>
 
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
-            </div><!-- /.navbar-collapse -->
             <div class="clearfix">
 
             </div>
@@ -129,61 +123,99 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <li>
                             <a href="@Url.Action("Index","Home")" class=" hvr-bounce-to-right"><i class="fa fa-dashboard nav_icon "></i><span class="nav-label">Dashboards</span> </a>
                         </li>
-                        @if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
-                        {
-                            <li>
-                                <a href="#" class=" hvr-bounce-to-right"><i class="fa fa-indent nav_icon"></i> <span class="nav-label">Projects</span><span class="fa arrow"></span></a>
-                                <ul class="nav nav-second-level">
-                                    <li><a href="@Url.Action("Index", "Projects")" class=" hvr-bounce-to-right"> <i class="fa fa-area-chart nav_icon"></i>All Projects</a></li>
-                                </ul>
-                            </li>
-                        }
-                        @if (User.IsInRole("Admin"))
-                        {
-                            <li>
-                                <a href="#" class=" hvr-bounce-to-right"><i class="fa fa-desktop nav_icon"></i> <span class="nav-label">Admin Functions</span><span class="fa arrow"></span></a>
-                                <ul class="nav nav-second-level">
-                                    <li><a href="@Url.Action("Index", "ApplicationUsers")" class=" hvr-bounce-to-right"> <i class="fa fa-info-circle nav_icon"></i>Change Role</a></li>
-                                </ul>
-                            </li>
-                        } @if (User.Identity.IsAuthenticated)
+
+                        @if (User.Identity.IsAuthenticated)
                         {
                             <li>
                                 <a href="@Url.Action("Index","Manage")" class=" hvr-bounce-to-right"><i class="fa fa-user nav_icon "></i><span class="nav-label">Edit Pofile</span> </a>
                             </li>
 
+                            //this is for admin menu
+                            if (User.IsInRole("Admin"))
+                            {
+                                <li>
+                                    <a href="#" class=" hvr-bounce-to-right"><i class="fa fa-desktop nav_icon"></i> <span class="nav-label">Admin Functions</span><span class="fa arrow"></span></a>
+                                    <ul class="nav nav-second-level">
+                                        <li><a href="@Url.Action("Index", "ApplicationUsers")" class=" hvr-bounce-to-right"> <i class="fa fa-info-circle nav_icon"></i>Change Role</a></li>
+                                    </ul>
+                                </li>
+                            }
+                            // They can see the project menu
+                            if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
+                            {
+                                <li>
+                                    <a href="#" class=" hvr-bounce-to-right"><i class="fa fa-indent nav_icon"></i> <span class="nav-label">Projects</span><span class="fa arrow"></span></a>
+                                    <ul class="nav nav-second-level">
+                                        <li><a href="@Url.Action("Index", "Projects", new { Manager = ""})" class=" hvr-bounce-to-right"> <i class="fa fa-area-chart nav_icon"></i>All Projects</a></li>
+                                        <li><a href="@Url.Action("Index", "Projects",new { Manager = "Manager"})" class=" hvr-bounce-to-right"> <i class="fa fa-area-chart nav_icon"></i>Your Projects</a></li>
+                                    </ul>
+                                </li>
+                            }
+                            // this is for other users who are not developer
+
+                            if (User.IsInRole("Submitter"))
+                            {
+                                <li>
+                                    <a href="#" class=" hvr-bounce-to-right"><i class="fa fa-desktop nav_icon"></i> <span class="nav-label">Tickets</span><span class="fa arrow"></span></a>
+                                    <ul class="nav nav-second-level">
+                                        <li><a href="@Url.Action("Index", "Tickets", new { id="" })" class=" hvr-bounce-to-right"> <i class="fa fa-info-circle nav_icon"></i>All Tickets</a></li>
+                                        <li><a href="@Url.Action("Index", "Tickets",new { id="User"})" class=" hvr-bounce-to-right"> <i class="fa fa-info-circle nav_icon"></i>Your Tickets</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="@Url.Action("Create","Tickets")" class=" hvr-bounce-to-right"><i class="fa fa-dashboard nav_icon "></i><span class="nav-label">Create Ticket</span></a></li>
+                            }
+                            if (User.IsInRole("Developer"))
+                            {
+                                <li>
+                                    <a href="#" class=" hvr-bounce-to-right"><i class="fa fa-desktop nav_icon"></i> <span class="nav-label">Tickets</span><span class="fa arrow"></span></a>
+                                    <ul class="nav nav-second-level">
+                                        <li><a href="@Url.Action("Index", "Tickets", new { id="" })" class=" hvr-bounce-to-right"> <i class="fa fa-info-circle nav_icon"></i>All Tickets</a></li>
+                                        <li><a href="@Url.Action("Index", "Tickets",new { id="User"})" class=" hvr-bounce-to-right"> <i class="fa fa-info-circle nav_icon"></i>Your Tickets</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Index", "Tickets", new { id = "myTicket" })" class=" hvr-bounce-to-right"><i class="fa fa-dashboard nav_icon "></i><span class="nav-label">Tickets Assigned to you</span> </a>
+                                </li>
+                                <li>  <a href="@Url.Action("Index", "Projects",new { Manager = "User"})" class=" hvr-bounce-to-right"><i class="fa fa-dashboard nav_icon "></i><span class="nav-label">Your Projects</span> </a></li>
+
+                                <li> <a href="@Url.Action("index", "Tickets", new { id = "myProjectsTicket" })" class=" hvr-bounce-to-right"><i class="fa fa-dashboard nav_icon "></i><span class="nav-label">Your Project Tickets</span> </a></li>
+                            }
+                            if (User.IsInRole("Project Manager"))
+                            {
+
+                                <li>
+                                    <a href="#" class=" hvr-bounce-to-right"><i class="fa fa-desktop nav_icon"></i> <span class="nav-label">Tickets</span><span class="fa arrow"></span></a>
+                                    <ul class="nav nav-second-level">
+                                        <li>
+                                            <a href="@Url.Action("Index", "Tickets", new { id = "myTicket" })" class=" hvr-bounce-to-right"><i class="fa fa-dashboard nav_icon "></i><span class="nav-label">Tickets of Your Project</span> </a>
+                                        </li>
+                                        <li> <a href="@Url.Action("index", "Tickets", new { id = "" })" class=" hvr-bounce-to-right"><i class="fa fa-dashboard nav_icon "></i><span class="nav-label">All Tickets</span> </a></li>
+                                    </ul>
+                                </li>
+                               
+                            }
+
                         }
-
-                        @if (User.Identity.IsAuthenticated)
-                        {
-                            <li>
-                                <a href="#" class=" hvr-bounce-to-right"><i class="fa fa-desktop nav_icon"></i> <span class="nav-label">Tickets</span><span class="fa arrow"></span></a>
-                                <ul class="nav nav-second-level">
-                                    <li><a href="@Url.Action("Index", "Tickets", new { id="" })" class=" hvr-bounce-to-right"> <i class="fa fa-info-circle nav_icon"></i>All Tickets</a></li>
-                                    <li><a href="@Url.Action("Index", "Tickets",new { id="User"})" class=" hvr-bounce-to-right"> <i class="fa fa-info-circle nav_icon"></i>Your Tickets</a></li>
-
-                                </ul>
-                            </li>
-                        }
-
                     </ul>
                 </div>
             </div>
         </nav>
-        <div id="page-wrapper" class="gray-bg dashbard-1">
+    </div>
+
+    <div id="page-wrapper" class="gray-bg dashbard-1">
 
 
-            @RenderBody()
-            <hr />
-        </div>
-        <div class="copy-right">
-            <p> &copy; 2018 Bug Tracker. All Rights Reserved | Design by Shital Bhutiya</p>
-        </div>
-        @RenderSection("scripts", required: false)
-        <script src="~/Scripts/jquery.nicescroll.js"></script>
-        <script src="~/Scripts/scripts.js"></script>
-        <!--//scrolling js-->
-        <script src="~/Scripts/bootstrap.min.js"></script>
-        <script type="text/javascript" src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+        @RenderBody()
+        <hr />
+    </div>
+    <div class="copy-right">
+        <p> &copy; 2018 Bug Tracker. All Rights Reserved | Design by Shital Bhutiya</p>
+    </div>
+    @RenderSection("scripts", required: false)
+    <script src="~/Scripts/jquery.nicescroll.js"></script>
+    <script src="~/Scripts/scripts.js"></script>
+    <!--//scrolling js-->
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 </body>
 </html>
