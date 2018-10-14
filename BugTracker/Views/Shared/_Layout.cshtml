@@ -150,15 +150,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     <a href="#" class=" hvr-bounce-to-right"><i class="fa fa-desktop nav_icon"></i> <span class="nav-label">Tickets</span><span class="fa arrow"></span></a>
                                     <ul class="nav nav-second-level">
                                         <li><a href="@Url.Action("Index", "Tickets", new { id="" })" class=" hvr-bounce-to-right"> <i class="fa fa-info-circle nav_icon"></i>All Tickets</a></li>
-                                        <li><a href="@Url.Action("Index", "Tickets",new { id="User"})" class=" hvr-bounce-to-right"> <i class="fa fa-info-circle nav_icon"></i>Your Tickets</a></li>
+                                        <li>
+                                            <a href="@Url.Action("Index", "Tickets", new { id = "myTicket" })" class=" hvr-bounce-to-right"><i class="fa fa-dashboard nav_icon "></i><span class="nav-label">Tickets Assigned to you</span> </a>
+                                        </li>
+                                        <li>  <a href="@Url.Action("Index", "Projects",new { Manager = "User"})" class=" hvr-bounce-to-right"><i class="fa fa-dashboard nav_icon "></i><span class="nav-label">Your Projects</span> </a></li>
+
+                                        <li> <a href="@Url.Action("index", "Tickets", new { id = "myProjectsTicket" })" class=" hvr-bounce-to-right"><i class="fa fa-dashboard nav_icon "></i><span class="nav-label">Your Project Tickets</span> </a></li>
                                     </ul>
                                 </li>
-                                <li>
-                                    <a href="@Url.Action("Index", "Tickets", new { id = "myTicket" })" class=" hvr-bounce-to-right"><i class="fa fa-dashboard nav_icon "></i><span class="nav-label">Tickets Assigned to you</span> </a>
-                                </li>
-                                <li>  <a href="@Url.Action("Index", "Projects",new { Manager = "User"})" class=" hvr-bounce-to-right"><i class="fa fa-dashboard nav_icon "></i><span class="nav-label">Your Projects</span> </a></li>
-
-                                <li> <a href="@Url.Action("index", "Tickets", new { id = "myProjectsTicket" })" class=" hvr-bounce-to-right"><i class="fa fa-dashboard nav_icon "></i><span class="nav-label">Your Project Tickets</span> </a></li>
                             }
                             if (User.IsInRole("Project Manager"))
                             {

@@ -86,13 +86,7 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.TicketProject.Name)
                             </td>
-                            @*<td>
-                                    @if (!string.IsNullOrWhiteSpace(ViewBag.User) &&(User.IsInRole("Project Manager")|| User.IsInRole("Developer")))
-                                    {
-                                        @Html.ActionLink("Edit", "Edit", new { id = item.Id });
-                                    }
-                                </td>*@
-
+                         
                             @if (User.Identity.IsAuthenticated && !string.IsNullOrWhiteSpace(ViewBag.User))
                             {
                                 if (User.IsInRole("Developer"))
@@ -102,9 +96,8 @@
 
                                     </td>
 
-
                                 }
-                                else if (User.IsInRole("Project Manager"))
+                                if (User.IsInRole("Project Manager"))
                                 {
                                     <td> @Html.ActionLink("Assign", "AssignDevelopers", new { ticketId = item.Id }) </td>
                                     <td>  @Html.ActionLink("Edit", "Edit", new { id = item.Id })</td>
