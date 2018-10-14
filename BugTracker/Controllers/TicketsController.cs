@@ -26,7 +26,6 @@ namespace BugTracker.Controllers
             var ticket = db.Tickets.FirstOrDefault(p => p.Id == ticketId);
             var userRoleHelper = new UserRoleHelper();
             var users = userRoleHelper.UsersInRole("Developer");
-
             model.Id = ticketId;
             model.UserList = new SelectList(users, "Id", "Name");
             return View(model);
@@ -34,11 +33,8 @@ namespace BugTracker.Controllers
         [HttpPost]
         public ActionResult AssignDevelopers(TicketAssignViewModel model)
         {
-            //STEP 1: Find the project
-
             var ticket = db.Tickets.FirstOrDefault(p => p.Id == model.Id);
             ticket.AssignId = model.SelectedUser;
-
             db.SaveChanges();
             return RedirectToAction("Index");
         }

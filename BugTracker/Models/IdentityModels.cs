@@ -18,13 +18,12 @@ namespace BugTracker.Models
         [InverseProperty("Assign")]
         public virtual ICollection<Ticket> AssigneeTickets { get; set; }
 
-        public string Name { get;  set; }
+        public string Name { get; set; }
         public string LastName { get; set; }
         public string DisplayName { get; set; }
         public ApplicationUser()
         {
             Project = new HashSet<Project>();
-            
         }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {

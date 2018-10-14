@@ -48,7 +48,7 @@ namespace BugTracker.Controllers
             {
                 userManager.AddToRole(user.Id, role);
             }
-            
+
             return RedirectToAction("Index");
         }
         protected override void Dispose(bool disposing)

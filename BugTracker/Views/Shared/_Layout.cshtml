@@ -9,7 +9,6 @@
     <meta name="keywords" content="Minimal Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-
     <link href="~/Content/bootstrap.min.css" rel='stylesheet' type='text/css' />
     <link href="http://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet" />
     <!-- Custom Theme files -->
@@ -24,28 +23,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <script src="~/Scripts/custom.js"></script>
     <script src="~/Scripts/screenfull.js"></script>
     <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css">
-
     <script>
         $(function () {
             $('#supported').text('Supported/allowed: ' + !!screenfull.enabled);
-
             if (!screenfull.enabled) {
                 return false;
             }
-
-
-
             $('#toggle').click(function () {
                 screenfull.toggle($('#container')[0]);
             });
-
-
-
         });
     </script>
-
-    <!----->
-    <!--pie-chart--->
     <script src="@Url.Content("~/Scripts/pie-chart.js")"></script>
     <script type="text/javascript">
         $(document).ready(function () {
@@ -58,7 +46,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     $(this.element).find('.pie-value').text(Math.round(percent) + '%');
                 }
             });
-
             $('#demo-pie-2').pieChart({
                 barColor: '#fbb03b',
                 trackColor: '#eee',
@@ -68,7 +55,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     $(this.element).find('.pie-value').text(Math.round(percent) + '%');
                 }
             });
-
             $('#demo-pie-3').pieChart({
                 barColor: '#ed6498',
                 trackColor: '#eee',
@@ -78,10 +64,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     $(this.element).find('.pie-value').text(Math.round(percent) + '%');
                 }
             });
-
-
         });
-
     </script>
     <!--skycons-icons-->
     <script src="~/Scripts/skycons.js"></script>
@@ -114,16 +97,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </div>
 
             <div class="clearfix">
-
             </div>
-
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
                             <a href="@Url.Action("Index","Home")" class=" hvr-bounce-to-right"><i class="fa fa-dashboard nav_icon "></i><span class="nav-label">Dashboards</span> </a>
                         </li>
-
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li>
@@ -192,19 +172,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         <li> <a href="@Url.Action("index", "Tickets", new { id = "" })" class=" hvr-bounce-to-right"><i class="fa fa-dashboard nav_icon "></i><span class="nav-label">All Tickets</span> </a></li>
                                     </ul>
                                 </li>
-                               
                             }
-
                         }
                     </ul>
                 </div>
             </div>
         </nav>
     </div>
-
     <div id="page-wrapper" class="gray-bg dashbard-1">
-
-
         @RenderBody()
         <hr />
     </div>

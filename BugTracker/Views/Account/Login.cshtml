@@ -5,13 +5,6 @@
     Layout = null;
 }
 
-
-<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -30,7 +23,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <script src="~/Scripts/bootstrap.min.js"></script>
 </head>
 <body>
-
     <div class="login">
         <h1><a href=@Url.Action("index","home")>Bug Tracker </a></h1>
         <div class="login-bottom">
@@ -39,32 +31,29 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             {
                 @Html.AntiForgeryToken()
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-            <div class="col-md-6">
-                <div class="login-mail">
-                    @Html.TextBoxFor(m => m.Email, new { placeholder = "Email" })
-                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
-                    <i class="fa fa-envelope"></i>
-                </div>
-                <div class="login-mail">
-                    @Html.PasswordFor(m => m.Password, new { placeholder = "Password" })
-                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-                    <i class="fa fa-lock"></i>
-                </div>
-               
+                <div class="col-md-6">
+                    <div class="login-mail">
+                        @Html.TextBoxFor(m => m.Email, new { placeholder = "Email" })
+                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                        <i class="fa fa-envelope"></i>
+                    </div>
+                    <div class="login-mail">
+                        @Html.PasswordFor(m => m.Password, new { placeholder = "Password" })
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                        <i class="fa fa-lock"></i>
+                    </div>
                     <p>
                         @Html.ActionLink("Forgot your password?", "ForgotPassword")
                     </p>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                       
-                        @Html.CheckBoxFor(m => m.RememberMe)
-                        @Html.LabelFor(m => m.RememberMe)
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
 
+                            @Html.CheckBoxFor(m => m.RememberMe)
+                            @Html.LabelFor(m => m.RememberMe)
+
+                        </div>
                     </div>
                 </div>
-            </div>
-               
                 <div class="col-md-6 login-do">
                     <label class="hvr-shutter-in-horizontal login-sub">
                         <input type="submit" value="login">
@@ -72,7 +61,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <p>Do not have an account?</p>
                     <a href="@Url.Action("Register","Account")" class="hvr-shutter-in-horizontal">Signup</a>
                 </div>
-
                 <div class="clearfix"> </div>
             }
         </div>
@@ -96,8 +84,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!--//scrolling js-->
 </body>
 </html>
-
-
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

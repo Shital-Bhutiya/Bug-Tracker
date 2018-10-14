@@ -16,6 +16,5 @@ namespace BugTracker.Models.Classes
         public string Name { get; set; }
         public virtual ICollection<ApplicationUser> Users { get; set; }
         public virtual ICollection<Ticket> Tickets { get; set; }
-       
     }
 }
