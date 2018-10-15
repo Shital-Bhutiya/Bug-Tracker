@@ -140,6 +140,7 @@ namespace BugTracker.Controllers
             return View(model);
         }
         [HttpPost]
+
         public ActionResult AssignUsers(ProjectAssignViewModel model)
         {
             //STEP 1: Find the project

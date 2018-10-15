@@ -20,6 +20,7 @@ namespace BugTracker.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Tickets
+        [Authorize(Roles = "Admin,Project Manager")]
         public ActionResult AssignDevelopers(int ticketId)
         {
             var model = new TicketAssignViewModel();
@@ -31,6 +32,7 @@ namespace BugTracker.Controllers
             return View(model);
         }
         [HttpPost]
+        [Authorize(Roles = "Admin,Project Manager")]
         public ActionResult AssignDevelopers(TicketAssignViewModel model)
         {
             var ticket = db.Tickets.FirstOrDefault(p => p.Id == model.Id);
