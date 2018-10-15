@@ -212,6 +212,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Classes\Attechments.cs" />
+    <Compile Include="Models\Classes\History.cs" />
     <Compile Include="Models\Classes\Priority.cs" />
     <Compile Include="Models\Classes\Project.cs" />
     <Compile Include="Models\Classes\Status.cs" />

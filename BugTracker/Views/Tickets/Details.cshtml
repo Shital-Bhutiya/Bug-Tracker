@@ -12,7 +12,7 @@
             <hr />
             <dl class="dl-horizontal">
                 <dt>
-                    @Html.DisplayNameFor(model => model.TicketPriority.Name)
+                    Priority
                 </dt>
 
                 <dd>
@@ -20,7 +20,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.TicketStatus.Name)
+                    Status
                 </dt>
 
                 <dd>
@@ -28,7 +28,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.TicketType.Name)
+                    Type
                 </dt>
 
                 <dd>
@@ -36,7 +36,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.Title)
+                    Title
                 </dt>
 
                 <dd>
@@ -52,7 +52,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.Created)
+                    Created On
                 </dt>
 
                 <dd>
@@ -60,27 +60,19 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.Updated)
+                    Owner of Ticket
                 </dt>
 
                 <dd>
-                    @Html.DisplayFor(model => model.Updated)
+                    @Html.DisplayFor(model => model.Creator.DisplayName)
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.CreatorId)
+                    Assigned Employee
                 </dt>
 
                 <dd>
-                    @Html.DisplayFor(model => model.CreatorId)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.AssignId)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.AssignId)
+                    @Html.DisplayFor(model => model.Assign.DisplayName)
                 </dd>
 
                 <dt>
@@ -88,7 +80,7 @@
                 </dt>
 
                 <dd>
-                    @Html.DisplayFor(model => model.TicketProjectId)
+                    @Html.DisplayFor(model => model.TicketProject.Name)
                 </dd>
 
             </dl>

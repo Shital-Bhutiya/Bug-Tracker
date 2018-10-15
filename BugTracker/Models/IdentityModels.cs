@@ -17,6 +17,9 @@ namespace BugTracker.Models
         public virtual ICollection<Ticket> CreatorTickets { get; set; }
         [InverseProperty("Assign")]
         public virtual ICollection<Ticket> AssigneeTickets { get; set; }
+        public virtual ICollection<Attechments> Attechments { get; set; }
+        public virtual ICollection<Comment>Comments { get; set; }
+        public virtual ICollection<History> Histories { get; set; }
 
         public string Name { get; set; }
         public string LastName { get; set; }
@@ -24,6 +27,10 @@ namespace BugTracker.Models
         public ApplicationUser()
         {
             Project = new HashSet<Project>();
+            CreatorTickets = new HashSet<Ticket>();
+            AssigneeTickets = new HashSet<Ticket>();
+            Attechments = new HashSet<Attechments>();Comments = new HashSet<Comment>();
+            Histories = new HashSet<History>();
         }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
@@ -58,6 +65,9 @@ namespace BugTracker.Models
         public DbSet<Priority> Prorities { get; set; }
 
         public DbSet<Comment> Comments { get; set; }
+
+        public DbSet<History> Histories { get; set; }
+
         public DbSet<Attechments> Attechments { get; set; }
     }
 }

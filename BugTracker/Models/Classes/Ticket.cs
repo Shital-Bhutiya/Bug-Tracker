@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Microsoft.AspNet.Identity;
+
 namespace BugTracker.Models.Classes
 {
     public class Ticket
@@ -29,9 +29,15 @@ namespace BugTracker.Models.Classes
         public int TicketStatusId { get; set; }
         public virtual Status TicketStatus { get; set; }
 
+        public virtual ICollection<Attechments> Attechments { get; set; }
+        public virtual ICollection<Comment>Comments { get; set; }
+        public virtual ICollection<History> Histories { get; set; }
         public Ticket()
         {
             Created = DateTime.Now;
+            Attechments = new HashSet<Attechments>();
+            Comments = new HashSet<Comment>();
+            Histories = new HashSet<History>();
         }
     }
 }
