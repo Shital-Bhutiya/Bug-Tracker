@@ -53,7 +53,7 @@ namespace BugTracker.Controllers
                 {
                     if (id == "myTicket")
                     {
-                        return View(db.Tickets.Include(t => t.TicketPriority).Include(t => t.TicketProject).Include(t => t.TicketStatus).Include(t => t.TicketType).Where(p => p.AssignId == userId).ToList());
+                        return View(db.Tickets.Include(t => t.Comments).Include(t => t.TicketPriority).Include(t => t.TicketProject).Include(t => t.TicketStatus).Include(t => t.TicketType).Where(p => p.AssignId == userId).ToList());
                     }
                     else if (id == "myProjectsTicket")
                     {
@@ -72,11 +72,11 @@ namespace BugTracker.Controllers
                 }
                 else if (role.Contains("Submitter"))
                 {
-                    return View(db.Tickets.Include(t => t.TicketPriority).Include(t => t.TicketProject).Include(t => t.TicketStatus).Include(t => t.TicketType).Where(p => p.CreatorId == userId).ToList());
+                    return View(db.Tickets.Include(t=>t.Comments).Include(t => t.TicketPriority).Include(t => t.TicketProject).Include(t => t.TicketStatus).Include(t => t.TicketType).Where(p => p.CreatorId == userId).ToList());
                 }
             }
             ViewBag.User = "";
-            return View(db.Tickets.Include(t => t.TicketPriority).Include(t => t.TicketProject).Include(t => t.TicketStatus).Include(t => t.TicketType).ToList());
+            return View(db.Tickets.Include(t => t.TicketPriority).Include(t => t.Comments).Include(t => t.TicketProject).Include(t => t.TicketStatus).Include(t => t.TicketType).ToList());
         }
 
         // GET: Tickets/Details/5
@@ -195,7 +195,35 @@ namespace BugTracker.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
+        [HttpPost]
+        [Authorize]
+        public ActionResult CreateComment(int id, string body)
+        {
+            if (id == 0)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var ticket = db.Tickets
+               .Where(p => p.Id == id)
+               .FirstOrDefault();
+            if (ticket == null)
+            {
+                return HttpNotFound();
+            }
+            if (string.IsNullOrWhiteSpace(body))
+            {
+                TempData["ErrorMessage"] = "Comment is required";
+                return RedirectToAction("Details", new { ticket.Id });
+            }
+            var comment = new Comment();
+            comment.UserId = User.Identity.GetUserId();
+            comment.TicketId = ticket.Id;
+            comment.Created = DateTime.Now;
+            comment.CommentDescription = body;
+            db.Comments.Add(comment);
+            db.SaveChanges();
+            return RedirectToAction("Details", new { id });
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

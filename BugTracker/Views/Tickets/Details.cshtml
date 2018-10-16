@@ -89,5 +89,45 @@
             @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
             @Html.ActionLink("Back to List", "Index")
         </p>
+        @if (User.Identity.IsAuthenticated)
+        {
+        <div class="leave-coment-form">
+            <h3>Leave Your Comment</h3>
+
+            @using (Html.BeginForm("CreateComment", "Tickets", new { id = Model.Id }, FormMethod.Post))
+            {
+                <input type="hidden" name="comment" />
+                <div  class="col-md-7">
+                    <label for="comment">Comment:</label>
+                    <textarea name="body" placeholder="Your comment here..." class="form-control"cols="10" id="comment"></textarea>
+                </div>
+                if (TempData["ErrorMessage"] != null)
+                {
+                    <span>@TempData["ErrorMessage"]</span>
+                }
+                if (ViewBag.ErrorMessage != null)
+                {
+                    <span>@ViewBag.ErrorMessage</span>
+                }
+                <div type="submit" value="Submit">
+                    <input type="submit" value="Submit Comment" class="btn btn-danger">
+                </div>
+            }
+
+            <div class="col-lg-6">
+                @foreach (var item in Model.Comments)
+                {
+                    <ul class="list-group">
+                        <li class="list-group-item list-group-item-danger">@item.User.DisplayName</li>
+                        <li class="list-group-item list-group-item-primary">@item.CommentDescription</li>
+                        <li class="list-group-item list-group-item-primary">@item.Created.ToString()</li>
+                    </ul>
+                    <div class="clearfix"> </div>
+                }
+            </div>
+        </div>
+
+        }
+     
     </div>
 </div>

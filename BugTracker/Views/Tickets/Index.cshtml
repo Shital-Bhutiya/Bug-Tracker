@@ -53,58 +53,58 @@
                 <tbody>
                     @foreach (var item in Model)
                     {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.TicketPriority.Name)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.TicketStatus.Name)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.TicketType.Name)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Title)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Description)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Created)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Updated)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Creator.DisplayName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Assign.DisplayName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.TicketProject.Name)
-                        </td>
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TicketPriority.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TicketStatus.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TicketType.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Title)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Description)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Created)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Updated)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Creator.DisplayName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Assign.DisplayName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TicketProject.Name)
+                            </td>
 
-                        @if (User.Identity.IsAuthenticated && !string.IsNullOrWhiteSpace(ViewBag.User))
-                        {
-                            if (User.IsInRole("Developer") || User.IsInRole("Submitter"))
+                            @if (User.Identity.IsAuthenticated && !string.IsNullOrWhiteSpace(ViewBag.User))
                             {
-                                <td>
-                                    @Html.ActionLink("Edit", "Edit", new { id = item.Id })
-                                </td>
                                 <td>
                                     @Html.ActionLink("Details", "Details", new { id = item.Id })
                                 </td>
-                            }
-                            if (User.IsInRole("Project Manager"))
-                            {
-                                <td> @Html.ActionLink("Assign", "AssignDevelopers", new { ticketId = item.Id }) </td>
-                                <td>  @Html.ActionLink("Edit", "Edit", new { id = item.Id })</td>
+                                if (User.IsInRole("Developer") || User.IsInRole("Submitter"))
+                                {
+                                    <td>
+                                        @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                                    </td>
 
+                                }
+                                if (User.IsInRole("Project Manager"))
+                                {
+                                    <td> @Html.ActionLink("Assign", "AssignDevelopers", new { ticketId = item.Id }) </td>
+                                    <td>  @Html.ActionLink("Edit", "Edit", new { id = item.Id })</td>
+                                }
                             }
-                        }
 
-                    </tr>
+                        </tr>
                     }
 
                 </tbody>
