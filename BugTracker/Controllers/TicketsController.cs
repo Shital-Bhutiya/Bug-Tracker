@@ -11,6 +11,8 @@ using BugTracker.Models.Helpers;
 using BugTracker.Models.Classes;
 using Microsoft.AspNet.Identity;
 using PagedList;
+using static BugTracker.Models.Helpers.DocumentUploder;
+using System.IO;
 
 namespace BugTracker.Controllers
 {
@@ -223,6 +225,31 @@ namespace BugTracker.Controllers
             db.Comments.Add(comment);
             db.SaveChanges();
             return RedirectToAction("Details", new { id });
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult UploadDocument(int id ,[Bind(Include = "Id,Description,FilePath")]Attechments attechments, HttpPostedFileBase document)
+        {
+            if (ModelState.IsValid)
+            {
+                if (DocumentUploder.IsWebFriendlyImage(document))
+                {
+                    var fileName = Path.GetFileName(document.FileName);
+                    document.SaveAs(Path.Combine(Server.MapPath("~/Uploads/"), fileName));
+                    attechments.FilePath = "/Uploads/" + fileName;
+                    attechments.TicketId = attechments.Id;
+                    attechments.UserId = User.Identity.GetUserId();
+                    attechments.Created = DateTime.Now;
+                    db.Attechments.Add(attechments);
+                }
+
+                db.SaveChanges();
+                return RedirectToAction("Details", new { id });
+            }
+
+            return View();
         }
         protected override void Dispose(bool disposing)
         {
