@@ -28,7 +28,7 @@ namespace BugTracker
             mailMessage.Body = message.Body;
             mailMessage.Subject = message.Subject;
             mailMessage.IsBodyHtml = true;
-            return personalEmailService.SendAsync(mailMessage);
+            return personalEmailService.SendAsync(mailMessage); 
         }
     }
 

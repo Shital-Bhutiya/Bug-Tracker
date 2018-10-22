@@ -1,5 +1,5 @@
 ﻿@model BugTracker.Models.Classes.Ticket
-
+@using BugTracker.Models.Helpers;
 @{
     ViewBag.Title = "Details";
 }
@@ -57,7 +57,7 @@
                         </dt>
 
                         <dd>
-                            @Html.DisplayFor(model => model.Created)
+                            @Html.DisplayDate(Model.Created)
                         </dd>
 
                         <dt>
@@ -86,7 +86,7 @@
 
                     </dl>
                 </div>
-               
+
                 <div class="row">
                     <div class="col-md-6">
                         @if (User.Identity.IsAuthenticated)
@@ -113,12 +113,12 @@
                         @using (Html.BeginForm("UploadDocument", "Tickets", new { id = Model.Id }, FormMethod.Post, new { enctype = "Multipart/form-data" }))
                         {
                             @Html.AntiForgeryToken()
-                        <div class="form-group col-lg-10">
-                            <h3>Attechments</h3>
-                            <b>===========================</b>
-                            <textarea name="description" placeholder="Your Description here..." class="form-control" cols="10" rows="8" id="comment"></textarea>
-                            <input name="document" type="file" class="form-control-file" id="fileUpload" />
-                        </div>
+                            <div class="form-group col-lg-10">
+                                <h3>Attechments</h3>
+                                <b>===========================</b>
+                                <textarea name="description" placeholder="Your Description here..." class="form-control" cols="10" rows="8" id="comment"></textarea>
+                                <input name="document" type="file" class="form-control-file" id="fileUpload" />
+                            </div>
                             <div class="col-md-10">
                                 <input type="submit" value="Attech File" class="btn btn-danger">
                             </div>
@@ -154,7 +154,7 @@
                     </div>
                 </div>
                 <div class="row">
-                 
+
 
                     <div class="col-md-12">
                         <h3>Histories</h3>
@@ -185,7 +185,7 @@
                                             @item.Property
                                         </td>
                                         <td>
-                                            @item.ChangedDate.ToString("dd/mm/yy HH:MM:ss")
+                                        @Html.DisplayDate(@item.ChangedDate)
                                         </td>
                                         <td>
                                             @item.NewValue

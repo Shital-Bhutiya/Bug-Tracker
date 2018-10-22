@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<BugTracker.Models.Classes.Ticket>
+    @using BugTracker.Models.Helpers;
 @{
     ViewBag.Title = "Index";
 }
@@ -70,10 +71,10 @@
                                 @Html.DisplayFor(modelItem => item.Description)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Created)
+                                @Html.DisplayDate(item.Created)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Updated)
+                                @Html.DisplayDate(item.Updated)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Creator.DisplayName)

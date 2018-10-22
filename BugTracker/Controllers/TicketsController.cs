@@ -10,9 +10,9 @@ using BugTracker.Models;
 using BugTracker.Models.Helpers;
 using BugTracker.Models.Classes;
 using Microsoft.AspNet.Identity;
-using PagedList;
-using static BugTracker.Models.Helpers.DocumentUploder;
 using System.IO;
+using System.Net.Mail;
+using System.Web.Configuration;
 
 namespace BugTracker.Controllers
 {
@@ -40,6 +40,13 @@ namespace BugTracker.Controllers
             var ticket = db.Tickets.FirstOrDefault(p => p.Id == model.Id);
             ticket.AssignId = model.SelectedUser;
             db.SaveChanges();
+
+            // Send Notification
+            if (ticket.AssignId != null)
+            {
+                EmailSendingExtensions.SendNotification(ticket.AssignId, "Assign");
+            }
+
             return RedirectToAction("Index");
         }
         public ActionResult Index(string id)
@@ -193,6 +200,10 @@ namespace BugTracker.Controllers
 
                 db.Histories.AddRange(changes);
                 db.SaveChanges();
+                if (ticket.AssignId != null)
+                {
+                    EmailSendingExtensions.SendNotification(ticket.AssignId, "Edit");
+                }
                 return RedirectToAction("Index");
             }
             ViewBag.AssigneeId = new SelectList(db.Users, "Id", "Name", ticket.AssignId);
@@ -271,6 +282,11 @@ namespace BugTracker.Controllers
             comment.Created = DateTime.Now;
             comment.CommentDescription = body;
             db.Comments.Add(comment);
+
+            if(comment.Ticket.AssignId != null)
+            {
+                EmailSendingExtensions.SendNotification(comment.Ticket.AssignId, "Comment");
+            }
             db.SaveChanges();
             return RedirectToAction("Details", new { id });
         }
@@ -291,6 +307,10 @@ namespace BugTracker.Controllers
                     attechments.UserId = User.Identity.GetUserId();
                     attechments.Created = DateTime.Now;
                     db.Attechments.Add(attechments);
+                    if (attechments.Ticket.AssignId != null)
+                    {
+                        EmailSendingExtensions.SendNotification(attechments.Ticket.AssignId, "Attechment");
+                    }
                 }
 
                 db.SaveChanges();
