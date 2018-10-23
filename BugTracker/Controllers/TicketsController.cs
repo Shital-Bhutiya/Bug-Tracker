@@ -44,7 +44,7 @@ namespace BugTracker.Controllers
             // Send Notification
             if (ticket.AssignId != null)
             {
-                EmailSendingExtensions.SendNotification(ticket.AssignId, "Assign");
+                EmailSendingExtensions.SendNotification(ticket, "Assign");
             }
 
             return RedirectToAction("Index");
@@ -202,7 +202,7 @@ namespace BugTracker.Controllers
                 db.SaveChanges();
                 if (ticket.AssignId != null)
                 {
-                    EmailSendingExtensions.SendNotification(ticket.AssignId, "Edit");
+                    EmailSendingExtensions.SendNotification(ticket, "Edit");
                 }
                 return RedirectToAction("Index");
             }
@@ -285,7 +285,7 @@ namespace BugTracker.Controllers
 
             if(comment.Ticket.AssignId != null)
             {
-                EmailSendingExtensions.SendNotification(comment.Ticket.AssignId, "Comment");
+                EmailSendingExtensions.SendNotification(comment.Ticket, "Comment");
             }
             db.SaveChanges();
             return RedirectToAction("Details", new { id });
@@ -306,14 +306,17 @@ namespace BugTracker.Controllers
                     attechments.TicketId = attechments.Id;
                     attechments.UserId = User.Identity.GetUserId();
                     attechments.Created = DateTime.Now;
+                    
                     db.Attechments.Add(attechments);
+                    db.SaveChanges();
+                    attechments = db.Attechments.FirstOrDefault(p => p.TicketId == attechments.TicketId);
                     if (attechments.Ticket.AssignId != null)
                     {
-                        EmailSendingExtensions.SendNotification(attechments.Ticket.AssignId, "Attechment");
+                        EmailSendingExtensions.SendNotification(attechments.Ticket, "Attechment");
                     }
                 }
 
-                db.SaveChanges();
+                
                 return RedirectToAction("Details", new { id });
             }
 

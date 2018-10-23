@@ -490,3 +490,9 @@ C:\C#Projects\Bug-Tracker - Copy\BugTracker\obj\Debug\BugTracker.dll
 C:\C#Projects\Bug-Tracker - Copy\BugTracker\obj\Debug\BugTracker.pdb
 C:\C#Projects\Bug-Tracker - Copy\BugTracker\obj\Debug\BugTracker.csprojAssemblyReference.cache
 C:\C#Projects\Bug-Tracker\BugTracker\obj\Debug\BugTracker.csprojAssemblyReference.cache
+C:\C#Projects\Bug-Tracker\BugTracker\bin\Microsoft.AspNet.SignalR.Core.dll
+C:\C#Projects\Bug-Tracker\BugTracker\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+C:\C#Projects\Bug-Tracker\BugTracker\bin\Microsoft.AspNet.SignalR.Core.pdb
+C:\C#Projects\Bug-Tracker\BugTracker\bin\Microsoft.AspNet.SignalR.Core.xml
+C:\C#Projects\Bug-Tracker\BugTracker\bin\Microsoft.AspNet.SignalR.SystemWeb.pdb
+C:\C#Projects\Bug-Tracker\BugTracker\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
