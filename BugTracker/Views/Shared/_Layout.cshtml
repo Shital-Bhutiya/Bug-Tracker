@@ -104,10 +104,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <li>
                             <a href="@Url.Action("Index","Home")" class=" hvr-bounce-to-right"><i class="fa fa-dashboard nav_icon "></i><span class="nav-label">Dashboards</span> </a>
                         </li>
+                        <li>
+                            <a href="#" class=" hvr-bounce-to-right"><i class="fa fa-users nav_icon"></i> <span class="nav-label">Demo Profile</span><span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li><a href="@Url.Action("DemoUser", "Account",new { role="Admin"})" class=" hvr-bounce-to-right"> <i class="fa fa-user-secret nav_icon"></i>Admin</a></li>
+                                <li><a href="@Url.Action("DemoUser", "Account",new { role="Project Manager"})" class=" hvr-bounce-to-right"> <i class="fa fa-empire nav_icon" aria-hidden="true"></i>Project Manager</a></li>
+                                <li><a href="@Url.Action("DemoUser", "Account",new { role="Submitter"})" class=" hvr-bounce-to-right"> <i class="fa fa-paper-plane nav_icon"></i>Submitter</a></li>
+                                <li><a href="@Url.Action("DemoUser", "Account",new { role="Developer"})" class=" hvr-bounce-to-right"> <i class="fa fa-connectdevelop nav_icon"></i>Developer</a></li>
+                            </ul>
+                        </li>
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li>
-                                <a href="@Url.Action("Index","Manage")" class=" hvr-bounce-to-right"><i class="fa fa-user nav_icon "></i><span class="nav-label">Edit Pofile</span> </a>
+                                <a href="@Url.Action("Index","Manage")" class=" hvr-bounce-to-right"><i class="fa fa-cog fa-spin fa-1x fa-fw nav_icon "></i><span class="nav-label">Edit Pofile</span> </a>
                             </li>
 
                             //this is for admin menu
@@ -131,12 +140,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     </ul>
                                 </li>
                             }
-                            // this is for other users who are not developer
-
                             if (User.IsInRole("Submitter"))
                             {
                                 <li>
-                                    <a href="#" class=" hvr-bounce-to-right"><i class="fa fa-desktop nav_icon"></i> <span class="nav-label">Tickets</span><span class="fa arrow"></span></a>
+                                    <a href="#" class=" hvr-bounce-to-right"><i class="fa fa-ticket nav_icon"></i> <span class="nav-label">Tickets</span><span class="fa arrow"></span></a>
                                     <ul class="nav nav-second-level">
                                         <li><a href="@Url.Action("Index", "Tickets", new { id="" })" class=" hvr-bounce-to-right"> <i class="fa fa-info-circle nav_icon"></i>All Tickets</a></li>
                                         <li><a href="@Url.Action("Index", "Tickets",new { id="User"})" class=" hvr-bounce-to-right"> <i class="fa fa-info-circle nav_icon"></i>Your Tickets</a></li>
@@ -147,13 +154,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             if (User.IsInRole("Developer"))
                             {
                                 <li>
-                                    <a href="#" class=" hvr-bounce-to-right"><i class="fa fa-desktop nav_icon"></i> <span class="nav-label">Tickets</span><span class="fa arrow"></span></a>
+                                    <a href="#" class=" hvr-bounce-to-right"><i class="fa fa-ticket nav_icon"></i> <span class="nav-label">Tickets</span><span class="fa arrow"></span></a>
                                     <ul class="nav nav-second-level">
-                                        <li><a href="@Url.Action("Index", "Tickets", new { id="" })" class=" hvr-bounce-to-right"> <i class="fa fa-info-circle nav_icon"></i>All Tickets</a></li>
+                                        <li><a href="@Url.Action("Index", "Tickets", new { id="" })" class=" hvr-bounce-to-right"> <i class="fa fa-list-alt nav_icon"></i>All Tickets</a></li>
                                         <li>
-                                            <a href="@Url.Action("Index", "Tickets", new { id = "myTicket" })" class=" hvr-bounce-to-right"><i class="fa fa-dashboard nav_icon "></i><span class="nav-label">Tickets Assigned to you</span> </a>
+                                            <a href="@Url.Action("Index", "Tickets", new { id = "myTicket" })" class=" hvr-bounce-to-right"><i class="fa fa-object-ungroup nav_icon "></i><span class="nav-label">Tickets Assigned to you</span> </a>
                                         </li>
-                                        <li>  <a href="@Url.Action("Index", "Projects",new { Manager = "User"})" class=" hvr-bounce-to-right"><i class="fa fa-dashboard nav_icon "></i><span class="nav-label">Your Projects</span> </a></li>
+                                        <li>  <a href="@Url.Action("Index", "Projects",new { Manager = "User"})" class=" hvr-bounce-to-right"><i class="fa fa-superpowers nav_icon "></i><span class="nav-label">Your Projects</span> </a></li>
 
                                         <li> <a href="@Url.Action("index", "Tickets", new { id = "myProjectsTicket" })" class=" hvr-bounce-to-right"><i class="fa fa-dashboard nav_icon "></i><span class="nav-label">Your Project Tickets</span> </a></li>
                                     </ul>
@@ -163,7 +170,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             {
 
                                 <li>
-                                    <a href="#" class=" hvr-bounce-to-right"><i class="fa fa-desktop nav_icon"></i> <span class="nav-label">Tickets</span><span class="fa arrow"></span></a>
+                                    <a href="#" class=" hvr-bounce-to-right"><i class="fa fa-ticket nav_icon"></i> <span class="nav-label">Tickets</span><span class="fa arrow"></span></a>
                                     <ul class="nav nav-second-level">
                                         <li>
                                             <a href="@Url.Action("Index", "Tickets", new { id = "myTicket" })" class=" hvr-bounce-to-right"><i class="fa fa-dashboard nav_icon "></i><span class="nav-label">Tickets of Your Project</span> </a>

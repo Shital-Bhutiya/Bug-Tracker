@@ -13,7 +13,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace BugTracker.Controllers
 {
-    [Authorize]
+    
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;
@@ -22,7 +22,34 @@ namespace BugTracker.Controllers
         public AccountController()
         {
         }
-
+        public ActionResult DemoUser(string role)
+        {
+            var user = SelectUser(role);
+            if(user != null)
+            {
+                AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+                SignInManager.SignIn(user, false, false);
+            }
+            
+            return RedirectToAction("Index", "Home");
+        }
+        public ApplicationUser SelectUser(string Role)
+        {
+            var db = new ApplicationDbContext();
+            ApplicationUser user = null;
+            switch (Role)
+            {
+                case "Admin":
+                    return db.Users.Where(p => p.Email == "Admin@mybugtracker.com").FirstOrDefault();
+                case "Project Manager":
+                    return db.Users.Where(p => p.Email == "projectmanager@mybugtracker.com").FirstOrDefault();
+                case "Developer":
+                    return db.Users.Where(p => p.Email == "developer@mybugtracker.com").FirstOrDefault();
+                case "Submitter":
+                    return db.Users.Where(p => p.Email == "submitter@mybugtracker.com").FirstOrDefault();
+                default: return user;
+            }
+        }
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;

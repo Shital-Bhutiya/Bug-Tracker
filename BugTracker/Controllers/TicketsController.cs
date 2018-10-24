@@ -142,8 +142,9 @@ namespace BugTracker.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            var userId = User.Identity.GetUserId();
             Ticket ticket = db.Tickets.Find(id);
-            if (ticket == null)
+            if (ticket == null && (ticket.AssignId != userId || ticket.CreatorId != userId))
             {
                 return HttpNotFound();
             }
@@ -283,7 +284,7 @@ namespace BugTracker.Controllers
             comment.CommentDescription = body;
             db.Comments.Add(comment);
 
-            if(comment.Ticket.AssignId != null)
+            if (comment.Ticket.AssignId != null)
             {
                 EmailSendingExtensions.SendNotification(comment.Ticket, "Comment");
             }
@@ -306,7 +307,7 @@ namespace BugTracker.Controllers
                     attechments.TicketId = attechments.Id;
                     attechments.UserId = User.Identity.GetUserId();
                     attechments.Created = DateTime.Now;
-                    
+
                     db.Attechments.Add(attechments);
                     db.SaveChanges();
                     attechments = db.Attechments.FirstOrDefault(p => p.TicketId == attechments.TicketId);
@@ -316,7 +317,7 @@ namespace BugTracker.Controllers
                     }
                 }
 
-                
+
                 return RedirectToAction("Details", new { id });
             }
 
