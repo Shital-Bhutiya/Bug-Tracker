@@ -9,9 +9,9 @@ namespace BugTracker.Models
         public string CommentDescription { get; set; }
         public DateTimeOffset Created { get; set; }
         public string UserId { get; set; }
-        public ApplicationUser User { get; set; }
+        public virtual ApplicationUser User { get; set; }
 
         public int TicketId { get; set; }
-        public Ticket Ticket { get; set; }
+        public virtual Ticket Ticket { get; set; }
     }
 }

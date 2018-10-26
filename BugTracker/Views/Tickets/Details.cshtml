@@ -134,7 +134,7 @@
                             <ul class="list-group">
                                 <li class="list-group-item list-group-item-warning">@item.User.DisplayName</li>
                                 <li class="list-group-item list-group-item-primary">@item.CommentDescription</li>
-                                <li class="list-group-item list-group-item-primary">@item.Created.ToString("dd:MM:yy HH:MM:ss")</li>
+                                <li class="list-group-item list-group-item-primary">@Html.DisplayDate(item.Created)</li>
                             </ul>
                             <div class="clearfix"> </div>
                         }

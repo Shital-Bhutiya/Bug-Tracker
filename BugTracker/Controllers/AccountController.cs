@@ -13,7 +13,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace BugTracker.Controllers
 {
-    
+    [Authorize]
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;
@@ -22,6 +22,7 @@ namespace BugTracker.Controllers
         public AccountController()
         {
         }
+        [AllowAnonymous]
         public ActionResult DemoUser(string role)
         {
             var user = SelectUser(role);
@@ -33,6 +34,7 @@ namespace BugTracker.Controllers
             
             return RedirectToAction("Index", "Home");
         }
+        [AllowAnonymous]
         public ApplicationUser SelectUser(string Role)
         {
             var db = new ApplicationDbContext();

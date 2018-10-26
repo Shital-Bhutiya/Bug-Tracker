@@ -13,6 +13,7 @@ using Microsoft.AspNet.Identity;
 using System.IO;
 using System.Net.Mail;
 using System.Web.Configuration;
+using BugTracker.Models.ActionFilters;
 
 namespace BugTracker.Controllers
 {
@@ -89,6 +90,7 @@ namespace BugTracker.Controllers
         }
 
         // GET: Tickets/Details/5
+        [TicketAuthorization]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -136,6 +138,7 @@ namespace BugTracker.Controllers
         }
 
         // GET: Tickets/Edit/5
+        [TicketAuthorization]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -144,7 +147,7 @@ namespace BugTracker.Controllers
             }
             var userId = User.Identity.GetUserId();
             Ticket ticket = db.Tickets.Find(id);
-            if (ticket == null && (ticket.AssignId != userId || ticket.CreatorId != userId))
+            if (ticket == null)
             {
                 return HttpNotFound();
             }
@@ -160,6 +163,7 @@ namespace BugTracker.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [TicketAuthorization]
         public ActionResult Edit([Bind(Include = "Id,Title,Description,AssignId,TicketTypeId,TicketProjectId,TicketPriorityId,TicketStatusId")] Ticket ticket)
         {
             if (ModelState.IsValid)
@@ -259,6 +263,8 @@ namespace BugTracker.Controllers
         }
         [HttpPost]
         [Authorize]
+        [TicketAuthorization]
+
         public ActionResult CreateComment(int id, string body)
         {
             if (id == 0)
@@ -295,6 +301,8 @@ namespace BugTracker.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [TicketAuthorization]
+
         public ActionResult UploadDocument(int id, [Bind(Include = "Id,Description,FilePath")]Attechments attechments, HttpPostedFileBase document)
         {
             if (ModelState.IsValid)
@@ -316,11 +324,8 @@ namespace BugTracker.Controllers
                         EmailSendingExtensions.SendNotification(attechments.Ticket, "Attechment");
                     }
                 }
-
-
                 return RedirectToAction("Details", new { id });
             }
-
             return View();
         }
         protected override void Dispose(bool disposing)

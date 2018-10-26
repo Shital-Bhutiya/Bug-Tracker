@@ -20,6 +20,9 @@
                 <thead>
                     <tr>
                         <th>
+                            @Html.DisplayNameFor(model => model.TicketProject)
+                        </th>
+                        <th>
                             @Html.DisplayNameFor(model => model.TicketPriority)
                         </th>
                         <th>
@@ -41,20 +44,21 @@
                             @Html.DisplayNameFor(model => model.Updated)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.Creator.DisplayName)
+                            @Html.DisplayNameFor(model => model.CreatorId)
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.AssignId)
                         </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.TicketProject.Name)
-                        </th>
+
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var item in Model)
                     {
                     <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TicketProject.Name)
+                        </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.TicketPriority.Name)
                         </td>
@@ -82,9 +86,7 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.Assign.DisplayName)
                         </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.TicketProject.Name)
-                        </td>
+
 
                         @if (User.Identity.IsAuthenticated && !string.IsNullOrWhiteSpace(ViewBag.User))
                         {
@@ -94,7 +96,7 @@
                             <td>
                                 @Html.ActionLink("Edit", "Edit", new { id = item.Id })
                             </td>
-                           
+
                             if (User.IsInRole("Project Manager"))
                             {
                                 <td> @Html.ActionLink("Assign", "AssignDevelopers", new { ticketId = item.Id }) </td>

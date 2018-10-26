@@ -13,5 +13,9 @@ namespace BugTracker.Controllers
         {
             return View();
         }
+        public ActionResult Error_403()
+        {
+            return View();
+        }
     }
 }

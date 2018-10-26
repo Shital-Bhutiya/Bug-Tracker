@@ -219,6 +219,7 @@
     <Compile Include="Hubs\TrackerHub.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ActionFilters\TicketAuthorization.cs" />
     <Compile Include="Models\Classes\Attechments.cs" />
     <Compile Include="Models\Helpers\DocumentUploder.cs" />
     <Compile Include="Models\Classes\History.cs" />
@@ -263,6 +264,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="images\403.gif" />
     <Content Include="images\404.png" />
     <Content Include="images\arr.png" />
     <Content Include="images\dark.png" />
@@ -394,6 +396,7 @@
     <Content Include="Views\Tickets\Edit.cshtml" />
     <Content Include="Views\Tickets\Index.cshtml" />
     <Content Include="Views\Tickets\AssignDevelopers.cshtml" />
+    <Content Include="Views\Home\Error_403.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
