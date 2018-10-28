@@ -128,6 +128,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         <li><a href="@Url.Action("Index", "ApplicationUsers")" class=" hvr-bounce-to-right"> <i class="fa fa-info-circle nav_icon"></i>Change Role</a></li>
                                     </ul>
                                 </li>
+                                <li>
+                                    <a href="#" class=" hvr-bounce-to-right"><i class="fa fa-ticket nav_icon"></i> <span class="nav-label">Tickets</span><span class="fa arrow"></span></a>
+                                    <ul class="nav nav-second-level">
+                                        <li><a href="@Url.Action("Index", "Tickets", new { id="" })" class=" hvr-bounce-to-right"> <i class="fa fa-info-circle nav_icon"></i>All Tickets</a></li>
+                                    </ul>
+                                </li>
                             }
                             // They can see the project menu
                             if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
@@ -210,14 +216,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             // Create a function that the hub can call back to display messages.
             tracker.client.addNewMessageToPage = function (message) {
                 // Add the message to the page.
-               
-                    $("#error").html(message);
-                    $('#error').fadeIn(400).delay(6000).fadeOut(400);
-               
+
+                $("#error").html(message);
+                $('#error').fadeIn(400).delay(6000).fadeOut(400);
+
             };
             // Start the connection.
             $.connection.hub.start().done(function () {
-                tracker.server.sendNotificationToUser('t','t');
             });
         });
 

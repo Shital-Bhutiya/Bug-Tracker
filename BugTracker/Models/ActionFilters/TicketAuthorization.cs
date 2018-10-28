@@ -11,26 +11,43 @@ namespace BugTracker.Models.ActionFilters
         private UserRoleHelper userRoleHelper = new UserRoleHelper();
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            var  ticketId= Convert.ToInt32(filterContext.ActionParameters.FirstOrDefault(p=>p.Key=="id").Value);
+            var ticketId = Convert.ToInt32(filterContext.ActionParameters.FirstOrDefault(p => p.Key == "id").Value);
+            var actionMethod = filterContext.ActionDescriptor.ActionName;
             var userId = filterContext.HttpContext.User.Identity.GetUserId();
             var ticket = db.Tickets.Where(i => i.Id == ticketId).FirstOrDefault();
             var Roles = userRoleHelper.GetUserRoles(userId);
             var url = new UrlHelper(filterContext.RequestContext);
             var passed = false;
-            if(Roles.Contains("Project Manager"))
+            if (Roles.Contains("Project Manager"))
             {
                 if (ticket.TicketProject.Users.Select(p => p.Id).Contains(userId))
                 {
                     passed = true;
                 }
             }
+            if (Roles.Contains("Admin"))
+            {
+                passed = true;
+            }
             else if (Roles.Contains("Developer"))
             {
-                if(ticket.AssignId == userId || ticket.TicketProject.Users.Select(p => p.Id).Contains(userId))
+                if (actionMethod == "Details")
                 {
-                    passed = true;
+                    if (ticket.AssignId == userId || ticket.TicketProject.Users.Select(p => p.Id).Contains(userId))
+                    {
+                        passed = true;
+                    }
                 }
-            }else if (Roles.Contains("Submitter"))
+                else if (actionMethod == "Edit")
+                {
+                    if (ticket.AssignId==userId)
+                    {
+                        passed = true;
+                    }
+                }
+
+            }
+            else if (Roles.Contains("Submitter"))
             {
                 if (ticket.CreatorId == userId)
                 {

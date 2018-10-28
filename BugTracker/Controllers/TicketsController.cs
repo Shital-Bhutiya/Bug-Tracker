@@ -63,10 +63,12 @@ namespace BugTracker.Controllers
                 {
                     if (id == "myTicket")
                     {
+                        ViewBag.User = "myTicket";
                         return View(db.Tickets.Include(t => t.Comments).Include(t => t.TicketPriority).Include(t => t.TicketProject).Include(t => t.TicketStatus).Include(t => t.TicketType).Where(p => p.AssignId == userId).ToList());
                     }
                     else if (id == "myProjectsTicket")
                     {
+                        ViewBag.User = "myProjectsTicket";
                         var dbUSer = db.Users.FirstOrDefault(p => p.Id == userId);
                         var myProject = dbUSer.Project.Select(p => p.Id);
                         var ticket = db.Tickets.Where(p => myProject.Contains(p.TicketProjectId)).ToList();
@@ -163,7 +165,6 @@ namespace BugTracker.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [TicketAuthorization]
         public ActionResult Edit([Bind(Include = "Id,Title,Description,AssignId,TicketTypeId,TicketProjectId,TicketPriorityId,TicketStatusId")] Ticket ticket)
         {
             if (ModelState.IsValid)
@@ -188,18 +189,21 @@ namespace BugTracker.Controllers
 
                 foreach (var property in originalValues.PropertyNames)
                 {
-                    var originalValue = originalValues[property]?.ToString();
-                    var currentValue = currentValues[property]?.ToString();
-                    if (originalValue != currentValue)
+                    if(property != "Updated")
                     {
-                        var history = new History();
-                        history.ChangedDate = dateChanged;
-                        history.NewValue = GetValueFromKey(property, currentValue);
-                        history.OldValue = GetValueFromKey(property, originalValue);
-                        history.Property = property;
-                        history.TicketHistoryId = dbTicket.Id;
-                        history.HistoryUserId = User.Identity.GetUserId();
-                        changes.Add(history);
+                        var originalValue = originalValues[property]?.ToString();
+                        var currentValue = currentValues[property]?.ToString();
+                        if (originalValue != currentValue)
+                        {
+                            var history = new History();
+                            history.ChangedDate = dateChanged;
+                            history.NewValue = GetValueFromKey(property, currentValue);
+                            history.OldValue = GetValueFromKey(property, originalValue);
+                            history.Property = property;
+                            history.TicketHistoryId = dbTicket.Id;
+                            history.HistoryUserId = User.Identity.GetUserId();
+                            changes.Add(history);
+                        }
                     }
                 }
 
@@ -264,7 +268,6 @@ namespace BugTracker.Controllers
         [HttpPost]
         [Authorize]
         [TicketAuthorization]
-
         public ActionResult CreateComment(int id, string body)
         {
             if (id == 0)
@@ -297,8 +300,7 @@ namespace BugTracker.Controllers
             db.SaveChanges();
             return RedirectToAction("Details", new { id });
         }
-
-
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         [TicketAuthorization]
@@ -318,7 +320,7 @@ namespace BugTracker.Controllers
 
                     db.Attechments.Add(attechments);
                     db.SaveChanges();
-                    attechments = db.Attechments.FirstOrDefault(p => p.TicketId == attechments.TicketId);
+                    attechments = db.Attechments.Where(p => p.TicketId == attechments.TicketId).FirstOrDefault();
                     if (attechments.Ticket.AssignId != null)
                     {
                         EmailSendingExtensions.SendNotification(attechments.Ticket, "Attechment");
